@@ -12,18 +12,16 @@ import { Grid, Slider } from '@mui/material';
 import { useDataLayerValue } from './DataLayer';
 import SpotifyWebApi from 'spotify-web-api-js';
 import DevicesIcon from '@mui/icons-material/Devices';
-import axios from 'axios';
+
 
 const spotify = new SpotifyWebApi();
 
 function Footer() {
 
   const [{ track, token, State }, dispatch] = useDataLayerValue();
-  const [position, setPosition] = React.useState(track?.progress_ms);
   const [currentTime, setCurrentTime] = React.useState("0:00");
   const [duration, setDuration] = React.useState("0:00");
-  const [progress, setProgress] = React.useState(track?.progress_ms);
-  const [value, setValue] = React.useState(track?.progress_ms);
+
 
 
   spotify.setAccessToken(token);
@@ -59,11 +57,10 @@ function Footer() {
     curSec = curSec.toString().slice(0, 2);
     setCurrentTime(`${curMin}:${curSec}`);
 
-  },[track])
+  },[track, dispatch])
 
   function handleChange(event) {
     spotify.seek(event.target.value)
-    setPosition(event.target.value)
 
   }
   

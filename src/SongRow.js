@@ -2,12 +2,12 @@ import React from 'react';
 import "./SongRow.css";
 import SpotifyWebApi from 'spotify-web-api-js';
 import { useDataLayerValue } from './DataLayer';
-import axios from 'axios';
+
 
 
 const spotify = new SpotifyWebApi();
 function SongRow({track}) {
-     const [{token}, dispatch]  = useDataLayerValue();
+     const [{token}]  = useDataLayerValue();
      
      spotify.setAccessToken(token);
       
